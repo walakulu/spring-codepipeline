@@ -11,7 +11,7 @@ public class SpringCodepipelineApplication {
 
 	@RequestMapping("/")
 	public String home() {
-		return "Hello Docker World";
+		return "Hello Docker World with Hasitha";
 	}
 
 
