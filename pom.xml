@@ -18,6 +18,7 @@
         <sonar.projectKey>walakulu_spring-codepipeline</sonar.projectKey>
         <sonar.organization>walakulu</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>a118bbf80d4e95a5bf6130dbc012d059f87fecd3</sonar.login>
     </properties>
     <dependencies>
         <dependency>
