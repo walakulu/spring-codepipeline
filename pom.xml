@@ -15,9 +15,9 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>8</java.version>
-<!--        <sonar.projectKey>walakulu_spring-codepipeline</sonar.projectKey>-->
-<!--        <sonar.organization>walakulu</sonar.organization>-->
-<!--        <sonar.host.url>https://sonarcloud.io</sonar.host.url>-->
+        <sonar.projectKey>walakulu_spring-codepipeline</sonar.projectKey>
+        <sonar.organization>walakulu</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencies>
         <dependency>

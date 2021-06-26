@@ -1,6 +1,7 @@
 version: 0.2
 
 env:
+  SONAR_TOKEN: a118bbf80d4e95a5bf6130dbc012d059f87fecd3
   HOST: https://sonarcloud.io
   LOGIN: a118bbf80d4e95a5bf6130dbc012d059f87fecd3
   ORGANIZATON: walakulu
@@ -22,8 +23,8 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-#      - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-      - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT_KEY -Dsonar.organization=$ORGANIZATON
+      - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+#      - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$PROJECT_KEY -Dsonar.organization=$ORGANIZATON
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECT_KEY >result.json
       - cat result.json
