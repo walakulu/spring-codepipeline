@@ -1,11 +1,16 @@
 version: 0.2
 
+env:
+  SONAR_TOKEN: a118bbf80d4e95a5bf6130dbc012d059f87fecd3
+  PROJECT_KEY: walakulu_spring-codepipeline
+
 phases:
   install:
     runtime-versions:
       docker: 18
   pre_build:
     commands:
+      - apt-get install -y jq
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
@@ -15,6 +20,11 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
+      - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+      - sleep 5
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECT_KEY >result.json
+      - cat result.json
+      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
       - mvn package
       - docker build -t $ECR_REPOSITORY_URI:latest .
       - docker tag $ECR_REPOSITORY_URI:latest $ECR_REPOSITORY_URI:$IMAGE_TAG
